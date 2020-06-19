@@ -69,7 +69,7 @@ class win(QDialog):
             return
 
         # 调用opencv写入图像
-        cv.imwrite(fileName, self.img)
+        cv.imwrite(fileName, self.imgReal)
 
     def processSlot(self):
         if self.img.size == 1:
@@ -85,7 +85,18 @@ class win(QDialog):
         print('Process Complete')
 
         mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
-        self.imgReal = self.imgReal * mask2[:, :, np.newaxis]
+        print(mask2)
+
+        row, col, channel = self.imgReal.shape
+        for i in range(row):
+            for j in range(col):
+                if mask2[i, j] == 0:
+                    for k in range(channel):
+                        self.imgReal[i, j, k] = 255
+
+
+
+        # self.imgReal = self.imgReal * mask2[:, :, np.newaxis]
         self.img = cv.resize(self.imgReal, (360, 270))
 
         # 显示图片
