@@ -1,2 +1,5 @@
 
-src/.DS_Store
+*.DS_Store
+testData/*jpg
+*.png
+*.pdf
