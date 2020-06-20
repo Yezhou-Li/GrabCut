@@ -1,5 +1,3 @@
 
-*.DS_Store
-testData/*jpg
-*.png
-*.pdf
+*DS_Store
+testData/*
