@@ -1,1 +1,1 @@
-imgReducedSizeMB
+SingleMode

@@ -1,12 +1,18 @@
 # 建议Iteration设置
 
-| 种类 | Iteration |
-| :--: | :-------: |
-| 帽子 |    10     |
-| 手套 |    >20    |
-| 围巾 |           |
+| 种类 | Interactive Mode Iteration | Batch Mode Iteration |
+| :--: | :------------------------: | :------------------: |
+| 帽子 |                            |          10          |
+| 手套 |                            |     Unavailable      |
+| 围巾 |                            |     Unavailable      |
 
+# 各模式综述
 
+### Single File Mode
+
+### Batch Mode
+
+### Interactive Single Mode
 
 
 
@@ -16,15 +22,15 @@
 
 2. 搜索`anaconda PowerShell Prompt (miniconda)`
 
-![start](C:\Users\A201607\Desktop\GrabCut\archive\start.png)
+<img src="archive/start.png" alt="start" style="zoom:75%;" />
 
 1. 点击搜索得到的`anaconda PowerShell Prompt (miniconda)`， 进入如下界面
 
-![prompt](C:\Users\A201607\Desktop\GrabCut\archive\prompt.png)
+<img src="archive/prompt.png" alt="prompt" style="zoom:75%;" />
 
 1. 输入命令`conda activate cv`，若出现如下界面则命令输入正确，关键是光标所在行的开头为`(cv)`
 
-![activate](C:\Users\A201607\Desktop\GrabCut\archive\activate.png)
+<img src="archive/activate.png" alt="activate" style="zoom:75%;" />
 
 5. 运行程序
    * 方法一：
@@ -35,15 +41,15 @@
      1. 输入命令` python C:\Users\A201607\Desktop\GrabCut\main.py`
      2. 键入回车
 
-![main](C:\Users\A201607\Desktop\GrabCut\archive\main.png)
+<img src="archive/main.png" alt="main" style="zoom:75%;" />
 
 6. 若操作无误，应该出现以下界面
 
-![appMain](C:\Users\A201607\Desktop\GrabCut\archive\appMain.png)
+<img src="archive/appMain.png" alt="appMain" style="zoom:75%;" />
 
 7. 点击按钮`Single File Mode`，会进入如下界面
 
-![Single](C:\Users\A201607\Desktop\GrabCut\archive\Single.png)
+<img src="archive/Single.png" alt="Single" style="zoom:75%;" />
 
 * 该模式一次只能处理一张图片
 * `Open`按钮会打开一个文件选择界面，从中选择一张图片即可在主界面中显示出来
@@ -57,7 +63,7 @@
 
 1. 点击按钮`Batch Mode`，会进入如下界面
 
-![Batch](C:\Users\A201607\Desktop\GrabCut\archive\Batch.png)
+<img src="archive/Batch.png" alt="Batch" style="zoom:75%;" />
 
 * `Choose Directory `会
   * 打开一个文件夹选择界面，选择需要批处理的图片所在的文件夹

@@ -1,18 +1,15 @@
-import sys
-import datetime as dt 
-import cv2 as cv
-import numpy as np
-import pathlib
-import PyQt5.QtGui as qg 
-import PyQt5.QtWidgets as qw 
+import sys 
+# import pathlib
+# from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QWidget, QGridLayout, QApplication
 
 import GrabCutSingle as gcs
 import GrabCutBatch as gcb
 import InteractiveSingle as ins 
 
-CUR_DIR = pathlib.Path(__file__).parent.absolute()
+# CUR_DIR = pathlib.Path(__file__).parent.absolute()
 
-class MainWindow(qw.QMainWindow):
+class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -25,16 +22,16 @@ class MainWindow(qw.QMainWindow):
         self.setWindowTitle('Background Vison Main Panel')
 
         # component setting
-        self.singleButton = qw.QPushButton('Single File Mode')
-        self.batchButton = qw.QPushButton('Batch Mode')
-        self.interactiveSingleButton = qw.QPushButton('Interactive Single Mode')
-        self.interactiveBatchButton = qw.QPushButton('Interactive Batch Mode')
-        self.quitButton = qw.QPushButton('Quit')
+        self.singleButton = QPushButton('Single File Mode')
+        self.batchButton = QPushButton('Batch Mode')
+        self.interactiveSingleButton = QPushButton('Interactive Single Mode')
+        self.interactiveBatchButton = QPushButton('Interactive Batch Mode')
+        self.quitButton = QPushButton('Quit')
 
         # layout setting
-        self.mainWidget = qw.QWidget(self)
+        self.mainWidget = QWidget(self)
         self.setCentralWidget(self.mainWidget)
-        self.layout = qw.QGridLayout(self.mainWidget)
+        self.layout = QGridLayout(self.mainWidget)
         self.layout.addWidget(self.singleButton, 0, 0, 1, 1)
         self.layout.addWidget(self.batchButton, 0, 1, 1, 1)
         self.layout.addWidget(self.interactiveSingleButton, 1, 0, 1, 1)
@@ -51,7 +48,9 @@ class MainWindow(qw.QMainWindow):
         self.show()
 
     def openSingleMode(self):
+        print('1')
         self.gcSingle = gcs.SingleMode()
+        print('2')
 
     def openBatchMode(self):
         self.gcBatch = gcb.BatchMode()
@@ -67,9 +66,9 @@ class MainWindow(qw.QMainWindow):
 
 
 if __name__ == "__main__":
-    app = qw.QApplication(sys.argv)
-    path = f'{CUR_DIR}/../archive/eye.png'
-    app.setWindowIcon(qg.QIcon(path))
+    app = QApplication(sys.argv)
+    # path = f'{CUR_DIR}/../archive/eye.png'
+    # app.setWindowIcon(QIcon(path))
 
     mw = MainWindow()
     sys.exit(app.exec_())

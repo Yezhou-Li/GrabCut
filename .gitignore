@@ -2,5 +2,5 @@
 *.DS_Store
 testData/*
 archive/.DS_Store
-archive/.DS_Store
-archive/.DS_Store
+*src/build*
+*src/dist*

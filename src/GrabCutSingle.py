@@ -42,6 +42,8 @@ class SingleMode(QDialog):
         self.btnQuit.clicked.connect(self.close)
         self.setWindowTitle('Background Vision')
 
+        self.show()
+
     def openSlot(self):
         # 调用打开文件diglog
         fileName, tmp = QFileDialog.getOpenFileName(
@@ -124,8 +126,8 @@ class SingleMode(QDialog):
 
 if __name__ == '__main__':
     a = QApplication(sys.argv)
-    path = f'{CUR_DIR}/../archive/eye.png'
-    a.setWindowIcon(QIcon(path))
+    # path = f'{CUR_DIR}/../archive/eye.png'
+    # a.setWindowIcon(QIcon(path))
     w = SingleMode()
     w.show()
     sys.exit(a.exec_())

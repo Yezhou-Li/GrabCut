@@ -6,12 +6,12 @@ import platform
 import cv2 as cv
 import numpy as np
 import pathlib
-import PyQt5.QtGui as qg
-import PyQt5.QtWidgets as qw
+# from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QLabel, QLineEdit, QTextBrowser, QWidget, QFileDialog, QGridLayout, QApplication
 
 CUR_DIR = pathlib.Path(__file__).parent.absolute()
 
-class BatchMode(qw.QMainWindow):
+class BatchMode(QMainWindow):
 
     def __init__(self):
         super().__init__()
@@ -26,22 +26,22 @@ class BatchMode(qw.QMainWindow):
         self.setWindowTitle('Background Vision Batch Mode')
 
         # component setting
-        self.chooseDir = qw.QPushButton('Choose Directory')
-        self.startButton = qw.QPushButton('Start Processing')
-        self.iterLabel = qw.QLabel('Iteration: ')
-        self.iterInput = qw.QLineEdit()
-        self.selectedFilesLabel = qw.QLabel('Selected Files:')
-        self.selectedFilesText = qw.QTextBrowser()
-        self.processedFilesLabel = qw.QLabel('Completed Files:')
-        self.processedFilesText = qw.QTextBrowser()
-        self.logLabel = qw.QLabel('log:')
-        self.logText = qw.QTextBrowser()
-        self.quitButton = qw.QPushButton('Quit')
+        self.chooseDir = QPushButton('Choose Directory')
+        self.startButton = QPushButton('Start Processing')
+        self.iterLabel = QLabel('Iteration: ')
+        self.iterInput = QLineEdit()
+        self.selectedFilesLabel = QLabel('Selected Files:')
+        self.selectedFilesText = QTextBrowser()
+        self.processedFilesLabel = QLabel('Completed Files:')
+        self.processedFilesText = QTextBrowser()
+        self.logLabel = QLabel('log:')
+        self.logText = QTextBrowser()
+        self.quitButton = QPushButton('Quit')
 
         # layout setting
-        self.mainWidget = qw.QWidget(self)
+        self.mainWidget = QWidget(self)
         self.setCentralWidget(self.mainWidget)
-        self.layout = qw.QGridLayout(self.mainWidget)
+        self.layout = QGridLayout(self.mainWidget)
         self.layout.addWidget(self.chooseDir, 0, 0, 1, 1)
         self.layout.addWidget(self.startButton, 0, 1, 1, 1)
         self.layout.addWidget(self.iterLabel, 1, 0, 1, 1)
@@ -76,7 +76,7 @@ class BatchMode(qw.QMainWindow):
     def openDirDialog(self):
         self.clearOutput()
         self.printf(self.logText, f'Current iteration = {self.iterTimes}')
-        self.dirPath = qw.QFileDialog.getExistingDirectory(
+        self.dirPath = QFileDialog.getExistingDirectory(
             self, "choose directory", f'{CUR_DIR}')
 
         if not os.path.exists(self.dirPath): return
@@ -114,18 +114,21 @@ class BatchMode(qw.QMainWindow):
         tb.append(str)   #在指定的区域显示提示信息
         cursor = tb.textCursor()
         tb.moveCursor(cursor.End)  #光标移到最后，这样就会自动显示出来
-        qw.QApplication.processEvents()  #一定加上这个功能，不然有卡顿
+        QApplication.processEvents()  #一定加上这个功能，不然有卡顿
 
     def startProcessing(self):
-        for i in range(len(self.picturesList)):
-            startTime = dt.datetime.now()
-            self.grabcut(self.picturesFullPathList[i])
-            endTime = dt.datetime.now()
-            spanTime = endTime - startTime
-            minutes = spanTime.seconds // 60
-            seconds = spanTime.seconds % 60
-            self.printf( self.processedFilesText,f'{self.picturesList[i]}  Time: {minutes} min, {seconds} sec.')
-        self.printf( self.logText, '\nAll pictures are processed.')
+        try:
+            for i in range(len(self.picturesList)):
+                startTime = dt.datetime.now()
+                self.grabcut(self.picturesFullPathList[i])
+                endTime = dt.datetime.now()
+                spanTime = endTime - startTime
+                minutes = spanTime.seconds // 60
+                seconds = spanTime.seconds % 60
+                self.printf( self.processedFilesText,f'{self.picturesList[i]}  Time: {minutes} min, {seconds} sec.')
+            self.printf( self.logText, '\nAll pictures are processed.')
+        except:
+            return
 
     def grabcutTest(self, picName):
         if platform.system() == 'Windows':
@@ -172,8 +175,8 @@ class BatchMode(qw.QMainWindow):
 
 
 if __name__ == '__main__':
-    app = qw.QApplication(sys.argv)
-    path = f'{CUR_DIR}/../archive/eye.png'
-    app.setWindowIcon(qg.QIcon(path))
+    app = QApplication(sys.argv)
+    # path = f'{CUR_DIR}/../archive/eye.png'
+    # app.setWindowIcon(qg.QIcon(path))
     bw = BatchMode()
     sys.exit(app.exec_())
