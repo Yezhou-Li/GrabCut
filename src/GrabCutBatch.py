@@ -22,20 +22,21 @@ class BatchMode(qw.QMainWindow):
 
     def initUI(self):
         # window setting
-        self.move(300, 100)
+        self.setGeometry(450, 150, 500, 500)
         self.setWindowTitle('Background Vision Batch Mode')
 
         # component setting
-        self.chooseDir = qw.QPushButton('Choose Directory', self)
-        self.startButton = qw.QPushButton('Start Processing', self)
-        self.iterLabel = qw.QLabel('Iteration: ', self)
-        self.iterInput = qw.QLineEdit(self)
+        self.chooseDir = qw.QPushButton('Choose Directory')
+        self.startButton = qw.QPushButton('Start Processing')
+        self.iterLabel = qw.QLabel('Iteration: ')
+        self.iterInput = qw.QLineEdit()
         self.selectedFilesLabel = qw.QLabel('Selected Files:')
         self.selectedFilesText = qw.QTextBrowser()
         self.processedFilesLabel = qw.QLabel('Completed Files:')
         self.processedFilesText = qw.QTextBrowser()
         self.logLabel = qw.QLabel('log:')
         self.logText = qw.QTextBrowser()
+        self.quitButton = qw.QPushButton('Quit')
 
         # layout setting
         self.mainWidget = qw.QWidget(self)
@@ -51,11 +52,14 @@ class BatchMode(qw.QMainWindow):
         self.layout.addWidget(self.processedFilesText, 3, 1, 4, 1)
         self.layout.addWidget(self.logLabel, 7, 0, 1, 1)
         self.layout.addWidget(self.logText, 8, 0, 1, 4)
+        self.layout.addWidget(self.quitButton, 9, 1, 1, 1)
 
         # slot
         self.chooseDir.clicked.connect(self.openDirDialog)
         self.startButton.clicked.connect(self.startProcessing)
         self.iterInput.returnPressed.connect(self.inputIteration)
+
+        self.quitButton.clicked.connect(self.close)
 
         self.show()
 
@@ -169,7 +173,7 @@ class BatchMode(qw.QMainWindow):
 
 if __name__ == '__main__':
     app = qw.QApplication(sys.argv)
-    path = f'{CUR_DIR}/archive/eye.png'
+    path = f'{CUR_DIR}/../archive/eye.png'
     app.setWindowIcon(qg.QIcon(path))
     bw = BatchMode()
     sys.exit(app.exec_())

@@ -1,1 +1,1 @@
-openDirDialog
+imgReducedSizeMB

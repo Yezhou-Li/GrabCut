@@ -18,8 +18,9 @@ class SingleMode(QDialog):
         self.initUI()
 
     def initUI(self):
-        self.windowWidth = 300
-        self.resize(400, self.windowWidth)
+        self.windowWidth = 500
+        
+        self.setGeometry(450, 150, 400, self.windowWidth)
         self.btnOpen = QPushButton('Open', self)
         self.btnSave = QPushButton('Save', self)
         self.btnProcess = QPushButton('Process', self)
@@ -123,7 +124,7 @@ class SingleMode(QDialog):
 
 if __name__ == '__main__':
     a = QApplication(sys.argv)
-    path = f'{CUR_DIR}/archive/eye.png'
+    path = f'{CUR_DIR}/../archive/eye.png'
     a.setWindowIcon(QIcon(path))
     w = SingleMode()
     w.show()
