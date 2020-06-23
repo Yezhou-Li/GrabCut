@@ -48,9 +48,7 @@ class MainWindow(QMainWindow):
         self.show()
 
     def openSingleMode(self):
-        print('1')
         self.gcSingle = gcs.SingleMode()
-        print('2')
 
     def openBatchMode(self):
         self.gcBatch = gcb.BatchMode()
